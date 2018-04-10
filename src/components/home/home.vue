@@ -1,8 +1,6 @@
 <template>
 <div>
-    <p>
-      登录组件
-    </p>
+  <p>home component</p>
 </div>
 </template>
 <script>

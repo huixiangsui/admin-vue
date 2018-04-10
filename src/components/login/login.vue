@@ -1,25 +1,16 @@
 <template>
-<div>
-    <p>登录组件</p>
-    <form @submit.prevent="login">
-      <div>
-        <label for="username">用户名</label>
-        <input type="text"
-          id="username"
-          v-model="userForm.username"
-          >
-      </div>
-      <div>
-        <label for="username">用户名</label>
-        <input type="text"
-          id="username"
-          v-model="userForm.password"
-          >
-      </div>
-      <div>
-        <button>点击登录</button>
-      </div>
-    </form>
+<div class="login-wrap">
+<el-form label-position="top" ref="form" :model="userForm" label-width="80px">
+  <el-form-item label="用户名">
+    <el-input v-model="userForm.username"></el-input>
+  </el-form-item>
+  <el-form-item label="密码">
+    <el-input v-model="userForm.password"></el-input>
+  </el-form-item>
+  <el-form-item>
+    <el-button type="primary" @click="login">立即创建</el-button>
+  </el-form-item>
+</el-form>
 </div>
 </template>
 <script>
@@ -35,7 +26,10 @@ export default {
   },
   methods: {
     async login () {
-      const res = await axios.post('http://localhost:8888/api/private/v1/login', this.userForm)
+      const res = await axios.post(
+        'http://localhost:8888/api/private/v1/login',
+        this.userForm
+      )
       // console.log(res)
       const data = res.data
       if (data.meta.status === 200) {
